@@ -1,124 +1,234 @@
-A Digital Forensics Readiness Model for AI-Powered Cyber Attacks
+# A DIGITAL FORENSICS READINESS MODEL FOR AI-POWERED CYBER ATTACKS
 
 CyberForensics Pro is an AI-powered digital forensics readiness platform designed to detect, analyze, and respond to AI-driven cyber attacks in real time.
 
 This research project implements a comprehensive forensic readiness model specifically architected to address the emerging threat landscape of autonomous malware, AI-generated phishing campaigns, and deepfake attacks.
 
-As artificial intelligence increasingly fuels cybercrime, with 57% of organizations worldwide reporting AI-related phishing or intrusion attempts — traditional digital forensic frameworks lack the adaptability to preserve and analyze evidence from intelligent and autonomous threats in real time.
 
-CyberForensics Pro bridges this gap by providing a proactive forensic readiness architecture equipped with AI-driven threat detection, real-time monitoring, and blockchain-based evidence integrity mechanisms.
+This platform bridges that gap by providing a proactive forensic readiness architecture integrating:
 
-⚙️ Key Capabilities
-🔍 Multi-Modal AI Threat Detection
+AI-based threat detection
 
-Email Phishing Detection using DistilBERT (≈ 89.7% confidence)
+Blockchain evidence integrity
 
-Network Intrusion Detection using Random Forest trained on NSL-KDD dataset (≈ 91.6% confidence)
+Real-time monitoring and reporting
 
-Ensemble Decision Logic combining AI predictions with rule-based heuristics
+##  KEY CAPABILITIES
+## MULTI-MODAL AI THREAT DETECTION
 
-  Real-Time Monitoring
+Email phishing detection using DistilBERT transformer models (≈89.7% confidence)
 
-WebSocket-based live threat broadcasting
+Network intrusion detection using Random Forest trained on NSL-KDD dataset (≈91.6% confidence)
 
-Sub-second response times (112–274 ms average)
+Ensemble hybrid analysis combining AI predictions with rule-based heuristics
 
-Automated alert propagation and threat classification
+### REAL-TIME MONITORING
 
- Blockchain Evidence Integrity
+ WebSocket-based threat broadcasting
 
-Immutable audit trails with cryptographic hash-chains
+Live dashboard updates for threat analytics
 
-Tamper-proof logging ensuring forensic and legal admissibility
+### BLOCKCHAIN EVIDENCE INTEGRITY
 
-End-to-end chain of custody validation
+Cryptographic hash-chain verification for immutable audit trails
 
- Interactive Dashboard
+Tamper-proof blockchain evidence logging
 
-Real-time threat metrics and analytics
+Full chain of custody and integrity verification
+
+### INTERACTIVE DASHBOARD
+
+Live threat metrics and analytics
 
 Incident response and case management
 
-Attack simulation and forensic reporting tools
+Attack simulation and forensic reporting
 
- Technology Stack
-Layer	Technologies
+### TECHNOLOGY STACK
+#### LAYER	TECHNOLOGIES
 Frontend	React 18, TypeScript, TailwindCSS, shadcn/ui
 Backend	Node.js, Express.js, WebSocket (ws)
-Database	PostgreSQL with Drizzle ORM
+Database	PostgreSQL + Drizzle ORM
 AI/ML Models	DistilBERT (ONNX), Random Forest (scikit-learn)
-Authentication	Replit OIDC with Passport.js
+Authentication	Replit OIDC + Passport.js
 Real-Time Engine	WebSocket for live updates
- Project Structure
+
+
+##  PROJECT STRUCTURE
+
+
 ├── client/          # React frontend
+
+
 ├── server/          # Express.js backend
+
+
 │   ├── ml/          # AI detection models
+
+
 │   └── models/      # ML model files (ONNX, pickle)
+
+
 ├── shared/          # Shared types & schemas
+
+
 └── package.json     # Dependencies
 
- Running the Project
-Prerequisites
 
-Make sure you have the following installed:
+
+# RUNNING THE PROJECT
+PREREQUISITES
 
 Node.js v18+
 
-PostgreSQL database (or a Neon
- serverless PostgreSQL instance)
+PostgreSQL (or Neon serverless PostgreSQL)
 
-npm or yarn
+npm or yarn package manager
 
-1. Clone the Repository
+### 1️⃣ CLONE THE REPOSITORY
+
+
 git clone https://github.com/NokubongaCele/Research-Project.git
 cd Research-Project
 
-2. Install Dependencies
+
+
+### 2️⃣ INSTALL DEPENDENCIES
+
+
 npm install
 
-3. Set Up Environment Variables
 
-Create a .env file in the root directory with the following:
+
+### 3️⃣ SET UP ENVIRONMENT VARIABLES
+
+
+Create a .env file in the root directory:
+
 
 DATABASE_URL=your_postgresql_connection_string
+
+
 NODE_ENV=development
 
-4. Run Database Migrations
+
+### 4️⃣ RUN DATABASE MIGRATIONS
+
+
 npm run db:push
 
-5. Start the Application
+
+
+### 5️⃣ START THE APPLICATION
+
+
 npm run dev
 
 
-The application will start at:
-👉 http://localhost:5000
+The application will start at http://localhost:5000
 
-⚙️ Components
 
-🖥️ Frontend: Vite development server
+# COMPONENTS
 
-⚙️ Backend: Express.js API server
+Frontend: Vite development server
 
-🔄 WebSocket: Real-time threat detection endpoint at /ws
 
-🌐 Accessing the Platform
+Backend: Express.js API server
+
+
+
+WebSocket: Real-time threat detection endpoint (/ws)
+
+
+
+### ACCESSING THE PLATFORM
 
 Open http://localhost:5000
- in your browser
+
+
 
 Authenticate via Replit OIDC
 
-Once logged in, access:
+
+
+Access key modules:
+
+
 
 Dashboard: Real-time metrics
 
+
+
 Threat Detection: AI-powered analysis
+
+
 
 Evidence Management: Blockchain logging
 
+
+
 Analytics: Forensic insights
 
-📦 Trained Models
 
-Due to GitHub file size limitations, trained AI models are hosted externally:
+
+### TRAINED MODELS
+
+Due to GitHub file size limits, trained AI models are hosted externally:
+
+
+### Installation
+
+
+After downloading, place the model files in the correct directory:
+
+
+Navigate to server/models/phishing/ in your project folder
+
+
+Copy the downloaded files into this directory
+
+
+Your folder structure should look like this:
+
+
+
+server/
+
+
+└── models/
+
+
+    └── phishing/
+
+    
+        ├── model.onnx          ← Place here
+
+        
+        ├── network_model.pkl   ← Place here
+
+        
+        ├── tokenizer.json      ← Place here
+
+        
+        
+Verification
+
+
+To verify the models are correctly installed, check that these files exist:
+
+
+server/models/phishing/model.onnx
+
+
+server/models/phishing/network_model.pkl
+
+
+server/models/phishing/tokenizer.json
+
+
+The application will automatically load these models on startup. If models are missing, the system will fall back to simulated detection mode.
+
+Link:
+
+
 https://drive.google.com/drive/folders/1FBXhvVyXEsG9JUv0KrB3W4hyb4KANbw9?usp=drive_link
