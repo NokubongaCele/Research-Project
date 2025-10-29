@@ -66,7 +66,7 @@ The platform bridges critical gaps in modern cybersecurity by providing a proact
 ---
 ## 🚀 Method 1: Running on Replit (Recommended)
 **Try the live demo first**: [https://docu-mate-n2202436.replit.app](https://docu-mate-n2202436.replit.app)
-**Or fork and customize your own version:**
+
 ### Steps:
 1. **Import to Replit**:
    - Go to [Replit](https://replit.com)
