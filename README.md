@@ -57,12 +57,53 @@ The platform bridges critical gaps in modern cybersecurity by providing a proact
 
 └── README.md # This file
 
-
+---
 ## Installation & Setup
 ### Prerequisites
 - **Node.js** v18 or higher
 - **PostgreSQL** (or Neon serverless PostgreSQL)
 - **npm** or **yarn** package manager
+---
+## 🚀 Method 1: Running on Replit (Recommended)
+**This is the easiest method and includes full authentication support.**
+### Steps:
+1. **Import to Replit**:
+   - Go to [Replit](https://replit.com)
+   - Click "Create Repl" → "Import from GitHub"
+   - Paste: `https://github.com/NokubongaCele/Research-Project`
+2. **Download AI Model Files**:
+   
+   **📥 Download Link**: [Google Drive - CyberForensics Pro Models](https://drive.google.com/drive/folders/1FBXhvVyXEsG9JUv0KrB3W4hyb4KANbw9?usp=drive_link)
+   
+   **Required Files**:
+   - `model.onnx` (255 MB) - DistilBERT phishing detection model
+   - `network_model.pkl` (671 MB) - Random Forest network intrusion model
+   - `tokenizer.json` - DistilBERT tokenizer configuration
+3. **Upload Model Files to Replit**:
+   - Upload the downloaded files to `server/models/phishing/` in your Repl
+   - Your folder structure should look like:
+     ```
+     server/
+     └── models/
+         └── phishing/
+             ├── model.onnx          ← Upload here
+             ├── network_model.pkl   ← Upload here
+             └── tokenizer.json      ← Upload here
+     ```
+4. **Configure Database**:
+   - Replit will automatically provision a PostgreSQL database
+   - Run in the Shell:
+     ```bash
+     npm run db:push
+     ```
+5. **Run the Application**:
+   - Click the **"Run"** button
+   - The app will start at your Repl's URL
+   - Authentication will work automatically via Replit OIDC
+✅ **All features work on Replit, including authentication!**
+---
+## 💻 Method 2: Running Locally (For Development/Testing)
+**Note**: Replit OIDC authentication will NOT work locally. Follow these steps to run without authentication for testing purposes.
 ### 1️⃣ Clone the Repository
 ```bash
 git clone https://github.com/NokubongaCele/Research-Project.git
@@ -70,16 +111,15 @@ cd Research-Project
 2️⃣ Install Dependencies
 npm install
 3️⃣ Download AI Model Files
-Due to GitHub file size limits (100MB max), the trained AI models are hosted externally.
+📥 Download Link: Google Drive - CyberForensics Pro Models
 
-📥 Download Link:https://drive.google.com/drive/folders/1FBXhvVyXEsG9JUv0KrB3W4hyb4KANbw9?usp=drive_link
 Required Files:
 
 model.onnx (255 MB) - DistilBERT phishing detection model
 network_model.pkl (671 MB) - Random Forest network intrusion model
 tokenizer.json - DistilBERT tokenizer configuration
 Installation Steps:
-Link: https://drive.google.com/drive/folders/1FBXhvVyXEsG9JUv0KrB3W4hyb4KANbw9?usp=drive_link
+
 Download all files from the Google Drive link above
 Navigate to server/models/phishing/ in your project folder
 Copy the downloaded files into this directory
@@ -101,11 +141,28 @@ server/models/phishing/tokenizer.json
 4️⃣ Set Up Environment Variables
 Create a .env file in the root directory:
 
-DATABASE_URL=your_postgresql_connection_string
+DATABASE_URL=postgresql://username:password@localhost:5432/cyberforensics
 NODE_ENV=development
-5️⃣ Run Database Migrations
+Replace username, password, and database details with your local PostgreSQL credentials.
+
+5️⃣ Disable Authentication for Local Testing
+Option A: Comment out authentication middleware
+
+In server/index.ts, locate and comment out these lines:
+
+// Comment out these lines for local testing:
+// app.use(passport.initialize());
+// app.use(passport.session());
+// setupAuth(app);
+Option B: Skip authentication checks
+
+In server/routes.ts, you can bypass authentication by commenting out authentication middleware on protected routes.
+
+⚠️ Important: This is for local testing only. Never deploy without authentication in production.
+
+6️⃣ Run Database Migrations
 npm run db:push
-6️⃣ Start the Application
+7️⃣ Start the Application
 npm run dev
 The application will start at http://localhost:5000
 
@@ -114,10 +171,19 @@ Components:
 Frontend: Vite development server
 Backend: Express.js API server
 WebSocket: Real-time threat detection endpoint (/ws)
+⚠️ Limitations of Local Setup:
+
+No authentication (open access for testing)
+Replit-specific features may not work
+Recommended for development/testing only
 Accessing the Platform
+On Replit:
+Open your Repl's URL
+Click "Log in with Replit"
+Access all features with full authentication
+Locally (without auth):
 Open http://localhost:5000 in your browser
-Authenticate via Replit OIDC
-Access key modules:
+Access modules directly:
 Dashboard: Real-time metrics and threat visualization
 Threat Detection: AI-powered analysis
 Evidence Management: Blockchain logging
