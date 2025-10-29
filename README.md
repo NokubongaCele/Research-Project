@@ -65,7 +65,8 @@ The platform bridges critical gaps in modern cybersecurity by providing a proact
 - **npm** or **yarn** package manager
 ---
 ## 🚀 Method 1: Running on Replit (Recommended)
-**This is the easiest method and includes full authentication support.**
+**Try the live demo first**: [https://docu-mate-n2202436.replit.app](https://docu-mate-n2202436.replit.app)
+**Or fork and customize your own version:**
 ### Steps:
 1. **Import to Replit**:
    - Go to [Replit](https://replit.com)
@@ -178,7 +179,7 @@ Replit-specific features may not work
 Recommended for development/testing only
 Accessing the Platform
 On Replit:
-Open your Repl's URL
+Open your Repl's URL or the live demo
 Click "Log in with Replit"
 Access all features with full authentication
 Locally (without auth):
