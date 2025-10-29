@@ -1,0 +1,19 @@
+4.2 Prototype Tests
+This section discusses the different types of threat scenarios that will be tested against the prototype. These tests assess the system's ability to detect AI-powered cyber attacks and maintain forensic integrity. Sub-sections 4.2.1-4.2.5 explain the different test categories, which cover threat detection, evidence management, and real-time response capabilities.
+
+4.2.1 Email Threat Detection Without AI Model
+The baseline test conducted on email samples uses the system without the trained AI model loaded, i.e., it relies only on simulated detection algorithms for comparison purposes.
+
+4.2.2 AI-Powered Phishing Detection
+The primary test category assesses the system's ability to detect phishing attacks using the trained machine learning model. We test detection of simple phishing emails on individual samples, followed by testing complex spear-phishing scenarios. Once basic detection is validated, we test AI-generated phishing emails that traditional filters might miss. The third test evaluates detection of deepfake-enhanced phishing attempts. Finally, to assess comprehensive detection capability, we combine multiple AI attack vectors in a single test scenario.
+
+4.2.3 Real-time Threat Monitoring
+The following significant capability we assess is the system's real-time monitoring and alerting functionality. We test if the prototype can detect and immediately alert on incoming threats. Following this, we assess the system's ability to update dashboards in real-time and maintain WebSocket connections for live monitoring.
+
+4.2.4 Evidence Integrity and Blockchain Verification
+After testing threat detection capabilities, we assess the system's ability to maintain forensic evidence integrity. We test evidence creation and blockchain logging, then we verify cryptographic hash validation, and finally assess the complete audit trail maintenance for legal admissibility.
+
+4.2.5 Integrated End-to-End Forensic Workflow
+The final test combines all system components: threat detection → evidence logging → incident creation → analytics update → forensic reporting, validating the complete Digital Forensics Readiness Model implementation.
+
+This maintains the same academic structure while focusing on your cybersecurity/forensics domain instead of PDF tampering

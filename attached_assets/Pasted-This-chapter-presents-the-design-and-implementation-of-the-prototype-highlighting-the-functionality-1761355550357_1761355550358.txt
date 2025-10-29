@@ -1,0 +1,82 @@
+This chapter presents the design and implementation of the prototype, highlighting the functionality of its main components and their interactions. Section 3.2 provides an overview of the implementation, while subsections 3.2.1–3.2.3 examine the sub-components in detail and describe their roles.
+ \newpage
+ \subsection{Implementation details}
+The prototype here in referred to as CyberForensics Pro has been developed to detect AI-powered cyber-attacks in real time. It includes multiple functionalities which include forensic evidence management, attack simulation, and a final report. Its main function is to be a real-time detection system that continuously monitors live cyber-attacks and generates AI-driven for immediate response. To add,  CyberForensics Pro functions as a forensic evidence management system, making use of blockchain-based verification to ensure the integrity, authenticity, and legal admissibility of all collected evidence. 
+
+ Apart from the detection and evidence handling,  CyberForensics Pro also includes an attack simulation laboratory that individuals / organizations can use to test and evaluate their defensive mechanisms against AI-driven threats in controlled environments.
+ 
+ The overall system architecture is illustrated in Figure 2 below 
+
+
+ \begin{figure}[h]
+     \centering
+     \includegraphics[width=0.55\linewidth]{User interface.png}
+     \caption{\textbf \textit{System architecture of CyberForensics Pro, showing the user interface, backend server modules, and database flow.} }
+     \label{fig:placeholder}
+ \end{figure}
+ The three main sub-components of the prototype will be discussed in more detail in the following sub-sections: 
+
+\subsubsection{ Real-Time Threat Detection}
+The network traffic and system behaviors must have continuous monitoring capabilities to make sure the technique can detect and analyze AI-powered cyber attacks in real-time. The first phase being Real-Time Threat Detection is responsible for this process. 
+
+To demonstrate continuous monitoring capabilities, CyberForensics Pro includes a background simulation process on the server side making use of Node.js interval timers. This process runs every 30 seconds with a 10\% probability of generating threat events, of which simulate real world network intrusion detection systems (NIDS). Each simulated threat is assigned randomized parameters including threat type (deepfake, autonomous malware, AI phishing), severity level (critical, high, medium, low) . 
+
+The implementation of this background simulation is shown in figure 3 below, where a Node.js \verb|setInterval()| function executes every 30 seconds to generate and broadcast randomized AI-powered threat events. 
+
+ \begin{figure}[hbt!]
+     \centering
+     \includegraphics[width=0.5\linewidth]{Figure 3.png}
+     \caption{Implementation of the server-side real-time threat simulation using Node.js interval timers and WebSocket broadcasting. }
+     \label{fig:placeholder}
+ \end{figure}
+
+The systems begins by establishing a persistent WebSocket connection using the ws library. The library creates a two-way communication channel for real-time data streaming. Once the network monitoring has been activated, we separate the incoming data packets and the system behavioral patterns to use them for more processing. Afterwards a continuous process of analyzing all the necessary threat indicators for a particular data stream will then start. For each data packet, the content payload is processed through machine learning algorithms to generate confidence scores. 
+
+Subsequently the data then undergoes analysis through AI detection models. A threat classification will be computed using the behavioral pattern recognition engine. Prior to the threat confidence being computed, it is first normalized and converted into feature vectors that can be processed by the machine learning models. Not all network traffic patterns have uniform characteristics, some data attributes are weighted differently during analysis. The normalization is done to prevent the AI detection system from creating false positive results. 
+
+
+
+\subsubsection{Blockchain Evidence Logging}
+To ensure the integrity and authenticity of digital evidence, the system incorporates a blockchain-based evidence logging mechanism. Once the evidence has been collected, a cryptographic hash is generated to create a unique fingerprint of the data. The hashes along with timestamps and evidence identifiers are then recorded in a PostgreSQL database table structured as a blockchain chain. This phase is responsible for ensuring that the forensic integrity is maintained throughout the evidence lifecycle, which then provides tamper proof documentation which could be used for legal proceedings. 
+
+The systems starts with processing incoming evidence data through Drizzle Object-Relational Mapper(ORM) library which creates structured and relational database objects which helps with evidence management. When the evidence content is received, both the data and its metadata is prepared for cryptographic processing. A repetitive process is performed to generate hash signatures for all evidence items. For each evidence item, two distinct cryptographic hashes are computed to ensure both block identification and content integrity verification. These hashes are Block Hash which is for the cryptographic block identifier and Data Hash for the evidence content fingerprint
+
+After the calculation of the content hash for the evidence payload, a block-chain link is established using the previous entry's cryptographic signature.  Before entering or storing new evidence, the system queries the database for the most recent evidence block and then copies its blockHash value as the new entry's previousHash field. This then creates a strong chain structure where each block is always referencing its predecessor, which then forms a chronological sequence that cannot be altered. If any historical block is modified or deleted, the previousHash reference in subsequent blocks would become invalid, immediately revealing the tampering attempt.
+
+Lastly, when multiple evidence entries are processed at the same time, this systematic process repeats for all forensic artifacts, ensuring each receives independent cryptographic protection while maintaining the chronological chain structure 
+
+The implementation of the blockchain is shown below:
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{blockchain.png}
+    \caption{Block chain implementation}
+    \label{fig:placeholder}
+\end{figure}
+
+
+\subsubsection{\textbf{Attack Simulation Laboratory} }
+The third phase:  Attack Simulation Laboratory' sub-component is responsible for creating realistic attack scenarios and measuring detection performance. 
+
+The system first initializes the attack simulation workflows using the simulation management module. When a user initiates a simulation, the system extracts the attack type, which falls into one of three predefined categories: deepfake attacks (for testing AI-generated content detection), autonomous malware (for validating adaptive threat recognition), and AI phishing campaigns (for evaluating spear-phishing detection capabilities). Each simulation type is defined by specific parameters, including the simulation name, a detailed description of the attack scenario, and the execution status.
+
+The system then processes simulation requests through iterative/repetitive deployment workflow.  Following the deployment of the attack simulation, performance metrics are then computed using the detection analysis engine. This part compares the simulated attacks with how the system responds to them. Prior to the results being calculated, all the outcomes are adjusted to make them fair since the different attack types such as AI phishing and deepfake have different levels of difficulty. 
+
+The results that are calculated are then saved in the PostgreSQL database table, of which each record has key details such as the simulation name, detection rate, status etc. This allows the simulations to be able to be tracked separately even when there are many running at the same time. 
+
+The system then combines the completed simulation and finds the average detection rate. This gives a clear picture of how well the system performed overall and how it improves over time.
+
+Lastly the results are shown in the simulation dashboard which then allows the user to visually see how many simulations have been run as well as how accurate the detections are for each attack type.
+
+
+\subsubsection{\textbf{Forensic Reporting System} }
+The CyberForensics Pro platform includes a comprehensive forensic reporting system designed to create reports suitable for legal proceedings and incident response documentation.  The system uses a multi step workflow which starts with data collection, followed by parameter definition, data filtering and ends with a complete chain of custody document.
+
+Developed with React and TypeScript, the frontend provides a complete reporting interface. Users can select from the five available report types which are: Threat Intelligence reports for AI detection summaries, Incident Reports for comprehensive incident analysis, Security Assessment reports for overall security posture analysis, Evidence Reports for blockchain verification and audit trails, and AI Analysis Reports for machine learning insights and pattern recognition results.  Each report is made for a different audience and contains different technical details in mind. 
+
+When creating a report, users can define the desired date range, selecting from the past 24 hours up to one year of historical data. . They then have the option of selecting their preferred exporting format which can be: PDF for professional documents, CSV for spreadsheet compatible data, JSON for structured data exchange, or Excel for Microsoft Office integration. 
+
+The reporting system is implemented as a functional prototype which demonstrates a complete user interface and API architecture. The frontend reporting interface is fully operational with all configuration options, report type selection, and export format choices. The backend API structure includes endpoints for report preview and generation with proper authentication. 
+
+After the aggregation of forensic data from multiple database sources, the reporting format is computed using a template processing engine within the Report Generation sub-component. Before the final report is produced, all collected information is validated and converted into the appropriate structured output format. 
+
+The following section concludes the chapter.

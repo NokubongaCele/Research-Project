@@ -1,0 +1,46 @@
+ Chapter Four: Prototype Experimentation
+ 4.1 Introduction
+ This chapter discusses the way that the prototype has been evaluated. These evaluations
+ are important in assessing the viability and validity of the prototype’s usage. The remain
+der of the chapter is structured as follows: section 4.2 will discuss the different changes
+ that will be made to the PDFs for the tests. Following the explanation of the tests, the
+ results will be tabulated and briefly discussed in sub-section 4.3.
+ 4.2 Prototype Tests
+ This section discusses the different types of changes that will be made to the PDFs. These
+ changes are what the prototype will attempt to detect. Sub-sections 4.2.1- 4.2.5 explain
+ the different changes, which are changes to the text, images, and metadata.
+ 4.2.1 PDF Document Without Hashes
+ The simplest test that will be conducted on the PDF documents is using a PDF document
+ that has not been protected by the prototype, i.e. it does not have any hashes stored.
+ 4.2.2 Altering the Text
+ The most common form of change that will be made to a PDF document will be altering
+ the text. We test the addition of text on a singular page, followed by testing the addition
+ on multiple pages. Once we have tested the addition of text, we test the text alteration
+ on single and multiple pages. The third type of test for altering text detection is removing
+ text from a single page and multiple pages. Finally, to detect tampering with text, we will
+ combine text addition, alteration, and removal in a combined test file.
+ 4.2.3 Altering Images
+ The following significant change that we will assess the ability of the prototype to detect
+ is alterations to an image. We test if the prototype can detect adding an image or mul
+tiple images on different pages. Following this, we assess the prototype’s ability to detect
+ alterations to an image on a page and, finally, its ability to detect the removal of images
+ from a page or multiple pages.
+ 4.2.4 Altering the Metadata
+ After we have tested the ability of the prototype to detect alterations to images, we assess
+ its ability to detect changes to the metadata of the PDF document. We add elements,
+ then we remove elements, and finally, alter metadata elements for the PDF document.
+ The previously mentioned test cases are applied to singular and multiple elements of the
+ PDF document.
+ 19
+4.2.5 Combination of All Alterations
+ The final test combines all of the types of alterations discussed in subsections 4.2.2 to 4.2.5.
+ 4.3 Final Results
+ Tables 1- 5 below tabulate the results of all the tests mentioned in subsection 4.2. All PDF
+ documents used in the test cases described below were first protected by the prototype,
+ then the alterations were made. The only exception to this protection is the first test,
+ which explicitly tests for the absence of the hashes. The PDF documents were created
+ using Microsoft Word and Adobe Acrobat. The PDF names with a * at the beginning
+ denote that the PDF was created with Microsoft Word; those without were created with
+ Adobe Acrobat. All changes to the text, images and metadata within a PDF were done
+ using Adobe Acrobat. The file page objects will change depending on the changes made
+ to the text and images within a PDF document

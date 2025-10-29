@@ -1,0 +1,31 @@
+5.3 Evaluation of Prototype Validity
+ Since the objects must be serialised before they are used for the generation of the hash,
+ should an addition or alteration be made that does not affect the selected elements, the
+ prototype will not detect this change. Because all PDF editors save the PDF with a
+ different underlying structure, we cannot serialise the entire object as is because the order
+ of these objects will impact the produced hash. This same issue with adding custom
+ elements to a PDF can be applied to the PDF metadata, where one can add their custom
+ metadata elements. The issue with not being able to create a hash using the object
+ consistently is a complex task requiring extensive research into the most consistent way to
+ convert it into a uniform input for the hash function.
+ When protecting the PDF document, a new file, a replica of the original that includes
+ the hashes embedded into the file page objects, is created. This in itself is a form of
+ tampering with the PDF document. There is no feasible way to insert the hashes into the
+ original file without tampering. For the sake of later assessment by a document tampering
+ specialist, the route of making a copy of the original file was chosen. This technique of
+ protecting the PDF relies on the fact that only the protected PDF will be the one to be
+ tampered with by a malicious individual.
+ 26
+We rely on the content stream for the majority of the detection of changes to the
+ content of a particular PDF document. This will only detect a change to the physical text
+ or the image visible to the user. If you were to change the font for a particular line or the
+ entire document, then the prototype would not be able to detect this. This stems from the
+ issue mentioned in the previous paragraph, where not all file page object elements can be
+ used to generate the object’s hash. While the content stream is part of the elements that
+ make up a file page object, the current prototype uses its parent element when creating
+ the hash for that particular file page object.
+ The prototype succeeds at detecting tampering with a PDF document. This is, how
+ever, limited to text, images and some types of alterations to metadata and the file page
+ objects. There are still many ways to modify the PDF document that the prototype would
+ not detect, such as adding JavaScript to the PDF document.
+ The following section concludes the chapter.

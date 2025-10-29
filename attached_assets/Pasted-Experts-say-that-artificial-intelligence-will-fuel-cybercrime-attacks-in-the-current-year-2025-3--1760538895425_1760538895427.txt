@@ -1,0 +1,51 @@
+Experts say that artificial intelligence will fuel cybercrime attacks in the current
+year 2025 [3]. As defined by the Oxford Dictionary, artificial intelligence (AI)
+involves the use of computer systems to carry out tasks or generate outputs that
+typically require human intelligence, often through the application of machine
+learning methods to extensive datasets. While AI has its own advantages and
+good uses, as it rapidly grows, there are criminals that use it for what we call
+cybercrime [4].
+Artificial intelligence is being used by criminals for automated, adaptive and
+large-scale threats [5] which can also be known as AI-Powered cyber attacks.
+While AI-powered security solutions help companies detect and prevent cyber-
+attacks, hackers are also using them to develop advanced attack techniques such
+as deepfake-based fraud [5]. Which is when an AI tool is used to generate fake
+media that manipulates facial features. An example is when they use another
+person’s video where they are saying a completely different thing and change it
+to what they want that person to say, usually asking for money.
+They also use it for phishing schemes which is the most common. This is
+when they trick you into releasing very sensitive information. An example would
+be an SMS (short message service) stating that you received money, but to claim
+you need click on the link. Then before you know it your money is gone. It is
+reported that globally 57 percent of companies receive phishing attempts [6].
+Lastly, these criminals use it for autonomous malware[5]. Which is a type
+of attack that can execute without any human intervention (no clicking links
+or anything of that nature). It follows a predefined set of instructions. It is
+actually one of the hardest to control or even detect because it has the ability
+to act independently.
+Therefore, the use of AI both as a defensive tool and a dangerous weapon
+poses significant challenges and threats for digital forensics. To counteract these
+attacks, digital forensic readiness models are being used. The goal of the models
+is to detect the cyber-attacks before they occur or create a pattern for better
+detection and prevention.
+One of the ways they do this is by creating a blockchain, which is a dis-
+tributed, decentralized ledger technology that securely records transactions across
+computers. These blockchains ensure integrity in the evidence, as they can-
+not be altered with, making it trustworthy and the evidence to have integrity.
+Blockchains enhance digital forensic investigations.
+Despite the existence of the current digital forensics readiness models named:
+Systemic Digital Forensic Investigation (SDFIM) Model, Kruse Heiser Model
+also known as Lucent, United States Department of Justice (USDOJ) model,
+Abstract Digital Forensics Model (ADFM), The Integrated Digital Investigation
+Process (IDIP), Digital Forensic Research Workshop model, and United States
+Department of Justice (USDOJ) model [7], [8], [9], many of them are currently
+5
+not working as effectively as they should.
+This is mainly due to the fast-evolving threat of artificial intelligence making
+the field of digital forensics quite challenging especially due to AI-Powered cyber-
+attacks/threats.
+The purpose of this research is to create a digital readiness forensics model
+that can counteract the cyber-attacks, this will be done by looking at the current
+or rather traditional methods that are being used and address the factors that
+make them not so effective as they should be. One of the features the model
+will entail is the ability to have real time detection/response time

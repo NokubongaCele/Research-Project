@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberForensics Pro - System Flow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        svg {
+            display: block;
+            margin: 0 auto;
+        }
+        .box {
+            fill: #E3F2FD;
+            stroke: #1976D2;
+            stroke-width: 2;
+        }
+        .box-green {
+            fill: #E8F5E9;
+            stroke: #388E3C;
+            stroke-width: 2;
+        }
+        .box-purple {
+            fill: #F3E5F5;
+            stroke: #7B1FA2;
+            stroke-width: 2;
+        }
+        .box-orange {
+            fill: #FFF3E0;
+            stroke: #F57C00;
+            stroke-width: 2;
+        }
+        .diamond {
+            fill: #FFE0B2;
+            stroke: #F57C00;
+            stroke-width: 2;
+        }
+        .header-box {
+            fill: #7C4DFF;
+            stroke: #5E35B1;
+            stroke-width: 2;
+        }
+        .section-header {
+            fill: #E8EAF6;
+            stroke: #3F51B5;
+            stroke-width: 1;
+        }
+        text {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            fill: #333;
+        }
+        .header-text {
+            fill: white;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .section-text {
+            font-weight: bold;
+            font-size: 11px;
+        }
+        .arrow {
+            stroke: #666;
+            stroke-width: 2;
+            fill: none;
+            marker-end: url(#arrowhead);
+        }
+        .label {
+            font-size: 10px;
+            fill: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CyberForensics Pro - System Flow</h1>
+        <svg width="800" height="650" viewBox="0 0 800 650">
+            <!-- Arrow marker definition -->
+            <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                    <polygon points="0 0, 10 3, 0 6" fill="#666" />
+                </marker>
+            </defs>
+
+            <!-- Header -->
+            <rect x="350" y="10" width="100" height="30" rx="5" class="header-box"/>
+            <text x="400" y="30" text-anchor="middle" class="header-text">CyberForensics Pro</text>
+
+            <!-- Section 1: Detect Threats & Real-Time Broadcast -->
+            <rect x="100" y="60" width="600" height="200" rx="3" class="section-header"/>
+            <text x="400" y="78" text-anchor="middle" class="section-text">1. Detect Threats & Real-Time Broadcasting</text>
+
+            <!-- Incoming Data -->
+            <rect x="120" y="95" width="120" height="40" rx="3" class="box"/>
+            <text x="180" y="118" text-anchor="middle">Incoming Data</text>
+            <text x="180" y="130" text-anchor="middle" class="label">(Email/Network)</text>
+
+            <!-- AI Analysis -->
+            <rect x="270" y="95" width="130" height="40" rx="3" class="box"/>
+            <text x="335" y="112" text-anchor="middle">AI/Rule-Based</text>
+            <text x="335" y="128" text-anchor="middle">Analysis</text>
+
+            <!-- Threat Detected Decision -->
+            <path d="M 520 115 L 570 95 L 620 115 L 570 135 Z" class="diamond"/>
+            <text x="570" y="112" text-anchor="middle">Threat</text>
+            <text x="570" y="125" text-anchor="middle">Detected?</text>
+
+            <!-- Generate Record -->
+            <rect x="495" y="155" width="150" height="50" rx="3" class="box-green"/>
+            <text x="570" y="175" text-anchor="middle">Generate Threat Record</text>
+            <text x="570" y="190" text-anchor="middle" class="label">with Confidence Score</text>
+
+            <!-- WebSocket Broadcast (NEW) -->
+            <rect x="470" y="220" width="200" height="30" rx="3" class="box-orange"/>
+            <text x="570" y="240" text-anchor="middle">Broadcast via WebSocket (Real-Time)</text>
+
+            <!-- Arrows for Section 1 -->
+            <path d="M 240 115 L 270 115" class="arrow"/>
+            <path d="M 400 115 L 520 115" class="arrow"/>
+            <path d="M 570 135 L 570 155" class="arrow"/>
+            <path d="M 570 205 L 570 220" class="arrow"/>
+            <text x="625" y="115" class="label">YES</text>
+
+            <!-- Section 2: Generate Blockchain Evidence -->
+            <rect x="100" y="280" width="600" height="140" rx="3" class="section-header"/>
+            <text x="400" y="298" text-anchor="middle" class="section-text">2. Generate Blockchain Evidence</text>
+
+            <!-- Threat Record -->
+            <rect x="120" y="315" width="100" height="35" rx="3" class="box"/>
+            <text x="170" y="335" text-anchor="middle">Threat Record</text>
+
+            <!-- Generate Hashes -->
+            <rect x="250" y="310" width="110" height="45" rx="3" class="box"/>
+            <text x="305" y="328" text-anchor="middle">Generate Hashes</text>
+            <text x="305" y="345" text-anchor="middle" class="label">(SHA-256)</text>
+
+            <!-- Create Block -->
+            <rect x="390" y="305" width="130" height="55" rx="3" class="box"/>
+            <text x="455" y="325" text-anchor="middle">Block Hash (8)</text>
+            <text x="455" y="340" text-anchor="middle">+</text>
+            <text x="455" y="355" text-anchor="middle">Data Hash (16)</text>
+
+            <!-- Store Evidence -->
+            <rect x="550" y="315" width="130" height="35" rx="3" class="box-green"/>
+            <text x="615" y="335" text-anchor="middle">Store in Blockchain</text>
+
+            <!-- Arrows for Section 2 -->
+            <path d="M 220 332 L 250 332" class="arrow"/>
+            <path d="M 360 332 L 390 332" class="arrow"/>
+            <path d="M 520 332 L 550 332" class="arrow"/>
+
+            <!-- Connection between sections -->
+            <path d="M 570 250 L 570 265 L 170 265 L 170 315" class="arrow"/>
+
+            <!-- Section 3: Verify Evidence Integrity -->
+            <rect x="100" y="440" width="600" height="180" rx="3" class="section-header"/>
+            <text x="400" y="458" text-anchor="middle" class="section-text">3. Verify Evidence Integrity</text>
+
+            <!-- Verification Request -->
+            <rect x="120" y="475" width="110" height="40" rx="3" class="box-purple"/>
+            <text x="175" y="492" text-anchor="middle">Verification</text>
+            <text x="175" y="506" text-anchor="middle">Request</text>
+
+            <!-- Has Evidence Decision -->
+            <path d="M 300 495 L 340 475 L 380 495 L 340 515 Z" class="diamond"/>
+            <text x="340" y="492" text-anchor="middle">Has</text>
+            <text x="340" y="505" text-anchor="middle">Evidence?</text>
+
+            <!-- Retrieve Evidence -->
+            <rect x="270" y="535" width="140" height="35" rx="3" class="box"/>
+            <text x="340" y="555" text-anchor="middle">Retrieve Evidence Entry</text>
+
+            <!-- Recalculate -->
+            <rect x="440" y="535" width="120" height="35" rx="3" class="box"/>
+            <text x="500" y="555" text-anchor="middle">Recalculate Hashes</text>
+
+            <!-- Compare -->
+            <rect x="590" y="530" width="90" height="45" rx="3" class="box-green"/>
+            <text x="635" y="548" text-anchor="middle">Compare</text>
+            <text x="635" y="563" text-anchor="middle">& Verify</text>
+
+            <!-- No Evidence -->
+            <rect x="270" y="580" width="140" height="30" rx="3" class="box-purple"/>
+            <text x="340" y="598" text-anchor="middle">"No Evidence Found"</text>
+
+            <!-- Arrows for Section 3 -->
+            <path d="M 230 495 L 300 495" class="arrow"/>
+            <path d="M 340 515 L 340 535" class="arrow"/>
+            <text x="345" y="528" class="label">YES</text>
+            <path d="M 410 552 L 440 552" class="arrow"/>
+            <path d="M 560 552 L 590 552" class="arrow"/>
+            <path d="M 300 495 L 260 495 L 260 595 L 270 595" class="arrow"/>
+            <text x="265" y="492" class="label">NO</text>
+
+            <!-- Connection from Section 2 to Section 3 -->
+            <path d="M 615 350 L 615 420 L 175 420 L 175 475" class="arrow"/>
+
+            <!-- Figure caption -->
+            <text x="400" y="640" text-anchor="middle" font-style="italic" font-size="14">Figure: CyberForensics Pro System Flow with Real-Time Detection</text>
+        </svg>
+    </div>
+</body>
+</html>

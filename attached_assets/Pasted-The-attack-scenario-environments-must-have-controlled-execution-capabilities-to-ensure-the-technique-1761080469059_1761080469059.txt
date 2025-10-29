@@ -1,0 +1,20 @@
+The attack scenario environments must have controlled execution capabilities to ensure the technique can generate and analyze AI-powered cyber attack simulations for detection system validation. The third phase:  Attack Simulation Laboratory' sub-component is responsible for creating realistic attack scenarios and measuring detection performance. 
+
+The system firstly initializes virtual attack enviroments using simulation frameworks that are contained of which then creates isolated execution contexts for testing various threats safely. Once the simulation parameters have been configured, we extract the attack type specifications and target system configurations to prepare them for controlled execution. An iterative process of deploying all necessary attack components for a particular simulation scenario will begin. For each simulation, the attack vectors are executed systematically while monitoring detection capabilities   
+
+Following the deployment of the attack simulation enviroment, performance metrics are then computed using the detection rate analysis engine. This is handled using the performance management sub component. Before the detection rates can be calculated for the simulation results, the attack success events and detection responses are first correlated and converted into quantifiable performance metrics.  This is because different attack types show different complexity levels, certain simulation parameters are weighted differently during analysis. This is done to prevent the performance measurement system from producing skewed assessment results. 
+After the simulation metrics are calculated, they are stored in a simulation object that looks as follows: 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{figure4.png}
+\end{figure}
+The values that are associated with each simulation property are the values that get stored within the simulations database table. This is achieved by creating fields that correspond in the simulation and then storing relevant performance data inside the columns. The fields created within the simulations table are: id, type, status, detectionRate, attackVectors, parameters, and results. If there are multiple  simulations executing within the laboratory environment, this process will be repeated for all active attack scenarios. 
+
+The next step in simulation analysis requires generating comparative performance baselines, which produces a metrics object that looks as follows: 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{figure 6.png}
+\end{figure}
+The values that are associated with the performance metric are stored in the analytics database to track detection system evolution over time. This is done by comparing current simulation results against the historical performance data and identifying the areas that need improvement.
+
+Once the simulation results and performance metrics have been processed and stored in their database tables, we use the analytics reporting systems to form a comprehensive report. 

@@ -1,0 +1,12 @@
+node_modules
+dist
+.DS_Store
+server/public
+vite.config.ts.*
+*.tar.gz
+
+# Large model files (download separately - see README)
+cyberforensics-pro.zip
+server/models/phishing/model.onnx
+server/models/phishing/network_model.pkl
+zibGjc8V

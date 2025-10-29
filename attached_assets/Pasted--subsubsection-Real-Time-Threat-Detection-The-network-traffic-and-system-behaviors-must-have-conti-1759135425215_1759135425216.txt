@@ -1,0 +1,46 @@
+\subsubsection{ Real-Time Threat Detection}
+The network traffic and system behaviors must have continuous monitoring capabilities to make sure the technique can detect and analyze AI-powered cyber attacks in real-time. The first phase being Real-Time Threat Detection is responsible for this process. 
+
+The systems firstly establishes a persistent WebSocket connection using the ws library. The library creates a two-way communication channel for real-time data streaming. Once the network monitoring has been activated, we separate the incoming data packets and the system behavioral patterns to use them for more processing. Afterwards a continuous process of analyzing all the necessary threat indicators for a particular data stream will then start. For each data packet, the content payload is processed through machine learning algorithms to generate confidence scores. 
+
+The analysis of data streaming through AI detection models then follows. A threat classification will be computed using the behavioral pattern recognition engine. Prior to the threat confidence being computed, it is first normalized and converted into feature vectors that can be processed by the machine learning models. Not all network traffic patterns have uniform characteristics, some data attributes are weighted differently during analysis. The normalization is done to prevent the AI detection system from creating false positive results. 
+
+After the confidence score is calculated, the scores are stored in a threat object that looks like the below: 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{figure 1.png}
+    
+    
+\end{figure}
+The step that follows in real-time detection requires generating cyrptograhic hash signatures for the threat data. Which then produces an object that looks like the below:
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{figure2.png}
+\end{figure}
+The values that are associated with the different hash type in the object are the values we will store in the database for fast threat comparison and forensic integrity. This is done by creating additional hash fields in the threats table and storing the relevant cryptographic signatures inside their respective columns. The hash fields that will be created are: contentHash, signatureHash, and behaviorHash. 
+
+When the threat data and the hash signatures have been inserted into the relevant database tables and broadcast through WebSocket to the connected clients, we then use the real-time broadcasting to update the dashboard interfaces immediately. The detected threat is now stored in the forensic database and can be used in " Evidence Chain Management" 
+
+\subsubsection{Blockchain Evidence Logging}
+To ensure the integrity and authenticity of digital evidence, the system incorporates a blockchain-based evidence logging mechanism. Once the evidence has been collected, its cryptographic hash is generated to create a unique fingerprint of the data. The hash along with timestamps and evidence identifiers is then recorded on a blockchain ledger. This phase is responsible for ensuring that the forensic integrity is maintained throughout the evidence lifecycle. 
+
+The systems starts with processing incoming evidence data through Drizzle Object-Relational Mapper library which creates structured and relational database objects which helps with evidence management. When the evidence content is received, both the data and its metadata is prepared for cryptographic processing. A repetitive process is performed to generate hash signatures for all evidence items. For each evidence item , the content is processed through SHA-256 hashing algorithms to generate the unique fingerprints. 
+
+After the calculation of the content hash for the evidence payload, a block-chain link will be computed using the previous entry's cryptographic signature. This is handled using the "Generate Cryptographic Hashes" sub component. Before the blockchain hash can be computed for evidence entry, the combined entry which includes timestamps and previous block reference are first converted to a format that can be encoded into bytes. This is to maintain uniform data structures, and ensures that the blockchain verification does not produce inconsistent results. 
+
+After the hashes are calculated, they are stored in an evidence object that looks like:
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{figure 3.png}
+\end{figure}
+
+The values that are associated with each property in the oobject are the values that are stored within the evidence database table. This is done by creating fields in the evidence schema and storing relevant cryptographic signatures inside their columns. The fields created within the evidence table are: id, contentHash, blockHash, previousHash, timestamp, and integrity. If there are multiple evidence entries processed concurrently, this process will be repeated for all forensic items while maintaining sequential blockchain ordering. 
+
+The next step in evidence logging requires generating a Merkle tree also known as a hash tree this is for granular tampering detection. This produces an object that looks like the below: 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{figure 4.png}
+    
+    
+\end{figure}
+The values associated with each Merkle component are stored within the database to enable precise localization of any unauthorized modifications. This is done by dividing evidence content into 256-byte segments, computing individual hashes for each segment, and constructing a hierarchical tree structure where each parent node contains the combined hash of its children. Once the blockchain hashes and Merkle tree structures have all been calculated and inserted into the evidence database table, we use the cryptographic verification system to establish an immutable audit trail. The protected evidence entry is now part of the forensic blockchain and can be used in " Forensic Verification Processes".

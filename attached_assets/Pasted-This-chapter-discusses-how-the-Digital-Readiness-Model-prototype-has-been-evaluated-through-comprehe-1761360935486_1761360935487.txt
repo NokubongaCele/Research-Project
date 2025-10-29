@@ -1,0 +1,19 @@
+This chapter discusses how the Digital Readiness Model prototype has been evaluated through comprehensive testing scenario. These evaluations assess the system's effectiveness in detecting AI-powered cyber attacks and maintaining forensic integrity.
+
+\subsection{Prototype Tests}
+This chapter focuses on the different types of threat scenarios that can be tested against the protoype. These tests the system's ability to detect AI-Powered cyber attacks while also maintaining forensic integrity. Sub-sections 4.2.1- 4.2.6 explain the different test categories, which cover threat detection, evidence management, and real-time response capabilities.
+\subsubsection{ Email Threat Detection Without AI Model}
+The test conducted on email samples uses the system without the trained AI model. It flags emails containing words like "urgent", "click here", "verify account".
+\subsubsection{AI-Powered Phishing Detection}
+The initial test assesses the system's ability to detect phishing attacks using the trained machine learning model. We test detection of the simple phishing emails on individual samples which is when the system can identify basic phishing attempts. Which is then followed by testing more advanced targeted attacks, once basic detection is validated, we test AI-generated phishing emails that traditional filters might miss. The third test evaluates detection of deepfake-enhanced phishing attempts
+
+\subsubsection{Network Intrusion Detection}
+The second major threat detection, assesses the system's ability to identify network-based attacks using our trained machine learning. The system tests various attacks which includes port scanning attempts (portsweep), butter overflow attempts, network reconnaissance (nmap) and malicious file transfers. This will prove the system's ability to analyze network patterns which will enable it to identify both known and unknown attacks.  
+ \subsubsection{Real-time Threat Monitoring }
+ This capability assesses the system's real-time monitoring functionality accross both email and network channels. We test if the prototype can detect and immediately alert on incoming threats from either detection system. After this we assess the system's ability to update the dashboard in real-time, maintain WebSocket connections for live monitoring, and broadcast threat alerts regardless of the detection source. 
+
+ \subsubsection{Evidence Integrity and Blockchain Verification }
+ After testing the system's threat detection capabilties, we then assess the system's ability to ensure forensic evidence integrity for both email and network based threats.  We test evidence creation and blockchain logging for different threat types and assess the complete audit trail maintenance for legal admissibility of both email and network forensic evidence. 
+
+\subsubsection{Complete Digital Forensic Workflow }
+The final test combines all system components across both detection modalities: multi-model threat detection (email + network) → evidence logging → incident creation → analytics update → forensic reporting, validating the complete Digital Forensics Readiness Model implementation for AI-powered cyber attacks.

@@ -1,0 +1,122 @@
+ The prototype can be used in two different ways with a PDF document. Firstly, to protect a
+ PDFdocumentusing our developed technique, the PDF must be run through the prototype
+ so that a Hash can be generated and inserted into a PDF document. Secondly, to assess
+ a PDF document for forgery or tampering, the PDF must be run through the prototype,
+ in which the detection process will determine if changes have been made.
+ The prototype is implemented in the Python language. The Hashlib and Merkly li
+braries are used to generate the hashes. To read the file page objects of the PDF, we make
+ use of the PDFRW library. The two main processes can be run independently of each
+ other. Figure 3 describes the general process flow of the prototype.
+ Figure 3: Prototype Flow
+ 14
+The three main sub-components of the prototype will be discussed in more detail in
+ the following sub-sections: in sub-section 3.2.1; we will discuss how a PDF document is
+ protected against tampering; in sub-section 3.2.2, we will discuss how the hashes are gen
+erated for a PDF document, and in sub-section 3.2.3 we will discuss how a PDF document
+ is assessed for tampering.
+ 3.2.1 Protect the PDF
+ The PDF document must have the calculated hashes to ensure the technique can detect
+ and analyse tampering or forgery. The first phase: ’1. Protect The PDF’ sub-component
+ from Figure 3 is responsible for this process.
+ First, it will read the PDF document into the prototype using the PDFRW library,
+ which produces a dictionary-like object for the parts of a PDF document. Once the PDF
+ document has been read, we isolate the file page objects to use them for further processing.
+ An iterative process of computing all the necessary hashes for a particular file page object
+ will begin. For each page, the content stream of the file page object is then used to generate
+ a Merkle tree; this is discussed in section 3.2.3.
+ Following the calculation of the Merkle tree for the file page object content stream,
+ a hash will be computed using the file page object itself. This is handled using the ”2.
+ Generate Hashes” sub-component from Figure 3, which will be discussed in section 3.4.
+ Before the hash can be computed for the file page object, it is first serialised and converted
+ into a format that can be encoded into bytes. Because not all PDF document editors
+ create and update a PDF document uniformly. certain sub-objects of the file page object
+ are excluded when serialising. This is done to prevent the calculation of a protected PDF
+ from producing a false result.
+ After the hash values are calculated, they are stored in an object that looks as follows:
+ { ’object’: hash value, ’root’, hash value, ’leafs’: list of hash values }. This object will be
+ discussed further in section 3.4. The values associated with each heading in the object are
+ the values we will store within the PDF document. This is done by creating three new
+ keys in the relevant file page object and storing the relevant value inside its respective key.
+ The keys created within the file page object are: hashobject, hashroot, and hashleafs. If
+ there are four pages within the PDF document, this process will be repeated for all four
+ pages.
+ The next step to protect the PDF, which requires generating a hash value for the root
+ object, which looks as follows: { ’root’: hash value, ’info’, hash value }. This object will be
+ discussed further in section 3.4. The values associated with each heading in the object are
+ the values we will store within the PDF document within the root object. This is done by
+ creating two new keys in the root object and storing the relevant value inside its respective
+ key. The keys that will be created within the file page object are: hashroot and hashinfo.
+ Once the hashes have all been inserted into the relevant file page objects and the root
+ object, we use the PDFRW library to save a new PDF document. The new PDF document
+ is now the protected PDF document and can be used in ”3. Assessing for Forgery”. Figure
+ 4 shows an example output of the prototype.
+ The next sub-section describes the process of generating the hashes.
+ 15
+Figure 4: Protect The PDF
+ 3.2.2 Generating the Hashes
+ The second phase, ”2. Generate Hashes” sub-component, is used in sub-components 1 and
+ 3. It is used to generate the object that was discussed in sub-section 3.2.1. This object
+ is used to protect and assess tampering within the PDF document. The elements of the
+ object and how they are generated will be discussed based on the order they are in within
+ the object. For reference of what the object looks like: { ’object’: hash value, ’root’, hash
+ value, ’leafs’: list of hash values}.
+ The ’object’ hash value is calculated using the Hashlib libraries implementation of the
+ SHA256 hashing algorithm. As discussed in the previous chapter, it is calculated using
+ the file page object after it has been serialised and encoded into a byte stream.
+ The ’root’ and ’leafs’ hash values are calculated simultaneously using the Merkly li
+braries implementation of a Merkle root. This library makes use of the Keccak hashing
+ algorithm. A Merkle root is the cumulative hash of all the hashes that comprise a Merkle
+ tree. An example is seen in Figure 4. The ’root’ hash value we store within the PDF is
+ Figure 5: Merkle Tree
+ the Merkle root of the Merkle tree created using the content stream within the file page
+ object. The content stream is divided into groups of 256 bytes, which are then used as
+ the leaves within the Merkle tree. The ’leafs’ hash values in the object are the previously
+ calculated hash values of the groups mentioned. These values are stored within the PDF
+ to localise where a change has been made within the file page object. If a change is made
+ to the content of the file page object where that change has been made, it can be localised
+ to the nearest 256-byte group of the content stream.
+ Once all three hash value groups have been calculated, they are returned to the sub
+component. that called the second phase ”2. Generate Hashes” sub-component; this could
+ be phase 1 or phase 3.
+ After the previously mentioned hash values have been stored in the PDF, the calculation
+ of the hash values for the root and metadata will be done. This is done second to the hash
+ values for the file page objects because those hashes are included when calculating the root
+ 16
+hash value. The hash object that will be produced is: { ’root’: hash value, ’info’, hash
+ value }. The root hash value is calculated by serialising the sub-objects of the Root and
+ calculating the hash with the produced value using the SHA256 algorithm. The info hash
+ value is calculated by serialising the metadata of a PDF document and again using the
+ SHA256 algorithm. The hash object is returned so the values can be stored in the root
+ object or used for comparison. Figure 6 shows the output of the generated hashes.
+ Figure 6: Generate The Hashes
+ The following sub-section discusses the process of assessing a PDF for tampering or
+ forgery.
+ 3.2.3 Assessing For PDF forgery
+ The second primary function that the prototype can accomplish is the assessment of tam
+pering within a PDF document. For phase 3, ”3. Assessing for Forgery”, to successfully
+ detect tampering requires that phase 1 be run on the PDF document before the suspected
+ tampering was done.
+ To perform the assessment, the prototype will read in the PDF using the PDFRW
+ library and extract the file page and root objects. It will then extract the hash values stored
+ in the root object associated with the following keys: hashroot and hashinfo. Following
+ this, it will extract all the groups of hashes for each file page object in the PDF document
+ from the relevant keys. The keys that will be extracted are: hashobject, hashroot, and
+ hashleafs.
+ After extracting the hash values from the root object and the file page objects, the
+ keys will be removed from the respective objects before calculating the hash value for the
+ relevant object. The calculated hash values will be compared to the previously extracted
+ hash values to determine if the file has been tampered with.
+ A relevant message indicating the presence or absence of tampering will be displayed.
+ Should tampering be detected within the PDF document, within the root object or the
+ metadata of the PDF document, a message to indicate this will be displayed. If tampering
+ 17
+has been detected, the page number where the changes were made will be displayed, and
+ in which group of the byte stream the changes are. Figure 7 shows the output of the
+ assessment for forgery.
+ Figure 7: Assess for Forgery
+ The following section concludes the chapter.
+ 3.3 Conclusion
+ This chapter discussed how the prototype has been implemented in terms of the underlying
+ architecture and libraries used. Following that, the core sub-components and how they
+ function were discussed. The next chapter will discuss the experimentation done using the
+ PDF to determine its efficiency and accuracy in detecting tampering or forgery

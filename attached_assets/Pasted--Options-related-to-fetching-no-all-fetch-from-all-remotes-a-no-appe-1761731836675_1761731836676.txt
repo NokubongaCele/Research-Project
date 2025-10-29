@@ -1,0 +1,40 @@
+
+Options related to fetching
+    --[no-]all            fetch from all remotes
+    -a, --[no-]append     append to .git/FETCH_HEAD instead of overwriting
+    --[no-]upload-pack <path>
+                          path to upload pack on remote end
+    -f, --[no-]force      force overwrite of local branch
+    -t, --[no-]tags       fetch all tags and associated objects
+    -p, --[no-]prune      prune remote-tracking branches no longer on remote
+    -j, --[no-]jobs[=<n>] number of submodules pulled in parallel
+    --[no-]dry-run        dry run
+    -k, --[no-]keep       keep downloaded pack
+    --[no-]depth <depth>  deepen history of shallow clone
+    --[no-]shallow-since <time>
+                          deepen history of shallow repository based on time
+    --[no-]shallow-exclude <ref>
+                          deepen history of shallow clone, excluding ref
+    --[no-]deepen <n>     deepen history of shallow clone
+    --unshallow           convert to a complete repository
+    --[no-]update-shallow accept refs that update .git/shallow
+    --refmap <refmap>     specify fetch refmap
+    -o, --[no-]server-option <server-specific>
+                          option to transmit
+    -4, --[no-]ipv4       use IPv4 addresses only
+    -6, --[no-]ipv6       use IPv6 addresses only
+    --[no-]negotiation-tip <revision>
+                          report that we have only objects reachable from this object
+    --[no-]show-forced-updates
+                          check for forced-updates on all updated branches
+    --[no-]set-upstream   set upstream for git pull/fetch
+
+~/workspace$ git push origin main
+To https://github.com/NokubongaCele/Research-Project.git
+ ! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs to 'https://github.com/NokubongaCele/Research-Project.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+~/workspace$ 

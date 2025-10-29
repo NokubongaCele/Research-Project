@@ -1,0 +1,36 @@
+ The PDF document must have the calculated hashes to ensure the technique can detect
+ and analyse tampering or forgery. The first phase: ’1. Protect The PDF’ sub-component
+ from Figure 3 is responsible for this process.
+ First, it will read the PDF document into the prototype using the PDFRW library,
+ which produces a dictionary-like object for the parts of a PDF document. Once the PDF
+ document has been read, we isolate the file page objects to use them for further processing.
+ An iterative process of computing all the necessary hashes for a particular file page object
+ will begin. For each page, the content stream of the file page object is then used to generate
+ a Merkle tree; this is discussed in section 3.2.3.
+ Following the calculation of the Merkle tree for the file page object content stream,
+ a hash will be computed using the file page object itself. This is handled using the ”2.
+ Generate Hashes” sub-component from Figure 3, which will be discussed in section 3.4.
+ Before the hash can be computed for the file page object, it is first serialised and converted
+ into a format that can be encoded into bytes. Because not all PDF document editors
+ create and update a PDF document uniformly. certain sub-objects of the file page object
+ are excluded when serialising. This is done to prevent the calculation of a protected PDF
+ from producing a false result.
+ After the hash values are calculated, they are stored in an object that looks as follows:
+ { ’object’: hash value, ’root’, hash value, ’leafs’: list of hash values }. This object will be
+ discussed further in section 3.4. The values associated with each heading in the object are
+ the values we will store within the PDF document. This is done by creating three new
+ keys in the relevant file page object and storing the relevant value inside its respective key.
+ The keys created within the file page object are: hashobject, hashroot, and hashleafs. If
+ there are four pages within the PDF document, this process will be repeated for all four
+ pages.
+ The next step to protect the PDF, which requires generating a hash value for the root
+ object, which looks as follows: { ’root’: hash value, ’info’, hash value }. This object will be
+ discussed further in section 3.4. The values associated with each heading in the object are
+ the values we will store within the PDF document within the root object. This is done by
+ creating two new keys in the root object and storing the relevant value inside its respective
+ key. The keys that will be created within the file page object are: hashroot and hashinfo.
+ Once the hashes have all been inserted into the relevant file page objects and the root
+ object, we use the PDFRW library to save a new PDF document. The new PDF document
+ is now the protected PDF document and can be used in ”3. Assessing for Forgery”. Figure
+ 4 shows an example output of the prototype.
+ The next sub-section describes the process of generating the hashes
